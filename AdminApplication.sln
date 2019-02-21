@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApplication", "AdminApplication\AdminApplication.csproj", "{E4D0E369-C9E1-4293-BDBD-53226AE96400}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTSLibrary", "..\PTSLibrary\PTSLibrary\PTSLibrary.csproj", "{9FB0BEFE-985B-4A98-831D-E54F16190A63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +17,15 @@ Global
 		{E4D0E369-C9E1-4293-BDBD-53226AE96400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4D0E369-C9E1-4293-BDBD-53226AE96400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4D0E369-C9E1-4293-BDBD-53226AE96400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB0BEFE-985B-4A98-831D-E54F16190A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB0BEFE-985B-4A98-831D-E54F16190A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB0BEFE-985B-4A98-831D-E54F16190A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB0BEFE-985B-4A98-831D-E54F16190A63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0CEDD836-0DAA-4129-B347-98386C854435}
+		SolutionGuid = {0587CAC5-CE92-47B9-A880-387A83A41FE8}
 	EndGlobalSection
 EndGlobal
