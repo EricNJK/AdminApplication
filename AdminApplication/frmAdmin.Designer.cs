@@ -39,7 +39,7 @@
             this.lblWelcome = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.newab = new System.Windows.Forms.TabPage();
+            this.newtab = new System.Windows.Forms.TabPage();
             this.newProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.btnAddProject = new System.Windows.Forms.Button();
             this.cbCustomer = new System.Windows.Forms.ComboBox();
@@ -76,7 +76,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
-            this.newab.SuspendLayout();
+            this.newtab.SuspendLayout();
             this.newProjectGroupBox.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.npTasksGroupBox.SuspendLayout();
@@ -184,7 +184,7 @@
             // 
             // tabControl2
             // 
-            this.tabControl2.Controls.Add(this.newab);
+            this.tabControl2.Controls.Add(this.newtab);
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Location = new System.Drawing.Point(6, 6);
             this.tabControl2.Name = "tabControl2";
@@ -193,16 +193,16 @@
             this.tabControl2.TabIndex = 0;
             this.tabControl2.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl2_Selected);
             // 
-            // newab
+            // newtab
             // 
-            this.newab.Controls.Add(this.newProjectGroupBox);
-            this.newab.Location = new System.Drawing.Point(4, 22);
-            this.newab.Name = "newab";
-            this.newab.Padding = new System.Windows.Forms.Padding(3);
-            this.newab.Size = new System.Drawing.Size(662, 354);
-            this.newab.TabIndex = 0;
-            this.newab.Text = "New";
-            this.newab.UseVisualStyleBackColor = true;
+            this.newtab.Controls.Add(this.newProjectGroupBox);
+            this.newtab.Location = new System.Drawing.Point(4, 22);
+            this.newtab.Name = "newtab";
+            this.newtab.Padding = new System.Windows.Forms.Padding(3);
+            this.newtab.Size = new System.Drawing.Size(662, 354);
+            this.newtab.TabIndex = 0;
+            this.newtab.Text = "New";
+            this.newtab.UseVisualStyleBackColor = true;
             // 
             // newProjectGroupBox
             // 
@@ -532,7 +532,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
-            this.newab.ResumeLayout(false);
+            this.newtab.ResumeLayout(false);
             this.newProjectGroupBox.ResumeLayout(false);
             this.newProjectGroupBox.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -559,7 +559,7 @@
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage newab;
+        private System.Windows.Forms.TabPage newtab;
         private System.Windows.Forms.GroupBox newProjectGroupBox;
         private System.Windows.Forms.Button btnAddProject;
         private System.Windows.Forms.ComboBox cbCustomer;

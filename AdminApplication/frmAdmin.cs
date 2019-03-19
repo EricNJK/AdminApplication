@@ -33,7 +33,8 @@ namespace AdminApplication
 
         /// <summary>   Default constructor. </summary>
         ///
-        /// <remarks>   Intializes a new <see cref="PTSAdminFacade"/> and default adminId '0'. </remarks>
+        /// <remarks>   Intializes a new <see cref="PTSAdminFacade"/> through .Net remoting and default adminId '0'.
+        ///             Also sets <see cref="btnLogin"/> as the default accept button. </remarks>
 
         public frmAdmin()
         {
@@ -41,16 +42,16 @@ namespace AdminApplication
             HttpChannel channel = new HttpChannel();
             ChannelServices.RegisterChannel(channel, false);
             facade = (PTSAdminFacade)RemotingServices.Connect(typeof(PTSAdminFacade),
-                                                                "http://localhost:50000/PTSAdminFacade");
+                                                                "http://127.0.0.1:50000/PTSAdminFacade");
             //facade = new PTSAdminFacade();
             adminId = 0;
             AcceptButton = btnLogin;
         }
 
-        /// <summary>   Event handler. Called by btnLogin for click events. </summary>
+        /// <summary>   Event handler for <see cref="btnLogin"/> for click events. </summary>
         ///
         /// <remarks>   Handles the administrator authentication.
-        ///             If auth succeeds the tabs are enabled, else an error is displayed. </remarks>
+        ///             If auth succeeds the tabs are enabled and accept button reset, else an error is displayed. </remarks>
         ///
         /// <param name="sender">   Source of the event. </param>
         /// <param name="e">        Event information. </param>
@@ -81,7 +82,12 @@ namespace AdminApplication
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Gets list of customers.
+        /// </summary>
+        /// <remarks> 
+        /// Event handler for "tabControl1.Selected" trigerred when the Projects tab is activated.
+        /// Gets array of customers and adds them to the customers combo box. </remarks>
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
@@ -92,12 +98,13 @@ namespace AdminApplication
                 cbCustomer.ValueMember = "id";
             }
         }
-
-        /// <summary>   Event handler. Called by btnAddProject for click events. </summary>
-        ///
-        /// <param name="sender">   Source of the event. </param>
-        /// <param name="e">        Event information. </param>
-
+        /// <summary>
+        /// Event handler for click event "btnAddProject.Click".
+        /// </summary>
+        /// <remarks>
+        /// Validates the new project name, then registers the new project.
+        /// Finally the method switches tabs and activates tasks tab.
+        /// </remarks>
         private void btnAddProject_Click(object sender, EventArgs e)
         {
             DateTime startDate, endDate;
@@ -106,7 +113,6 @@ namespace AdminApplication
                 MessageBox.Show("You need to fill in the name field");
                 return;
             }
-
             try
             {
                 startDate = DateTime.Parse(txtProjectStart.Text);
@@ -126,6 +132,14 @@ namespace AdminApplication
             tabControl2.SelectTab(1);
         }
 
+        /// <summary>
+        /// Event handler for "tabControl2.Selected" event.
+        /// </summary>
+        /// <remarks>
+        /// Gets list of projects for the logged in administrator and also teams.
+        /// Shows details of the project selected by default.
+        /// If no projects are available an error message is displayed, and details are not loaded.
+        /// </remarks>
         private void tabControl2_Selected(object sender, TabControlEventArgs e)
         {
             projects = facade.GetListOfProjects(adminId);
@@ -145,7 +159,11 @@ namespace AdminApplication
             cbTeams.DisplayMember = "Name";
             cbTeams.ValueMember = "TeamId";
         }
-
+        /// <summary>
+        /// Displays selected project's details.
+        /// </summary>
+        /// <remarks>
+        /// Also calls <see cref="UpdateTasks()"/>. </remarks>
         private void setProjectDetails()
         {
             selectedProject = projects[cbProjects.SelectedIndex];
@@ -154,6 +172,11 @@ namespace AdminApplication
             lblCustomer.Text = ((Customer)selectedProject.TheCustomer).Name;
             UpdateTasks();
         }
+        /// <summary>
+        /// Refreshes the list of tasks.
+        /// </summary>
+        /// <remarks>  Updates the tasks within the selected project,
+        /// then displays them on the listbox <see cref="lbTasks"/>. </remarks>
 
         private void UpdateTasks()
         {
@@ -163,11 +186,25 @@ namespace AdminApplication
             lbTasks.ValueMember = "TaskId";
         }
 
+        /// <summary>
+        /// Event handler called when admin selects a different project.
+        /// </summary>
+        /// <remarks> Only calls <see cref="setProjectDetails()"/>. </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             setProjectDetails();
         }
 
+        /// <summary>
+        /// Event handler called when admin submits a task.
+        /// </summary>
+        /// <remarks>
+        /// The task name and selected team is verified to avoid empty or null values.
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             DateTime startDate, endDate;
@@ -191,7 +228,6 @@ namespace AdminApplication
                 MessageBox.Show("The date(s) are in the wrong format");
                 return;
             }
-
             facade.CreateTask(txtTaskName.Text, startDate, endDate, (int)cbTeams.SelectedValue, selectedProject.ProjectId);
             txtTaskName.Text = "";
             txtTaskStart.Text = "";
@@ -200,5 +236,8 @@ namespace AdminApplication
             MessageBox.Show("Task successfully created");
             UpdateTasks();
         }
+
+        
+        public void dummy_method(int s, string g) { }
     }
 }
